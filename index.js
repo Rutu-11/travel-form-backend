@@ -12,9 +12,7 @@ app.use("/api", router);
 
 const connect = () => {
   mongoose
-    .connect(
-      `mongodb+srv://rutujadhekolkar97:${process.env.MONGODB_PASSWORD}@cluster0.pdssvjd.mongodb.net/?retryWrites=true&w=majority`
-    )
+    .connect(process.env.MONGO_URL)
     .then(() => {
       console.log("Connected to Server");
     })
