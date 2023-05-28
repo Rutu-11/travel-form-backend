@@ -3,7 +3,7 @@ const router = express.Router();
 const Submission = require('../models/submission');
 
 // API endpoint to receive form data and store it in the database
-router.post('/', async (req, res) => {
+router.post('/submissions', async (req, res) => {
   try {
     const submissionData = req.body;
     const submission = new Submission(submissionData);
