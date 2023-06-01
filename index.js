@@ -9,6 +9,7 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.use("/api", router);
+
 app.use('/',(req,res)=>{
   res.json({"msg":"hello word"})
 })
@@ -24,12 +25,7 @@ const connect = () => {
 };
 
 const port = process.env.PORT || 5000;
-connect()
-.then(() => {
-    app.listen(port, (e) => {
-        if(e){
-            console.log("Server Error",e);
-        }
-        console.log(`Server listening on http://localhost:${port}`)
-    })
-})
+app.listen(5000, () => {
+  connect();
+  console.log(`Server is running on port ${port}`);
+});

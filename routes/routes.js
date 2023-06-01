@@ -8,10 +8,10 @@ router.post('/submissions', async (req, res) => {
     const submissionData = req.body;
     const submission = new Submission(submissionData);
     const savedSubmission = await submission.save();
-    res.status(201).json(savedSubmission);
+    res.json(savedSubmission);
   } catch (error) {
     console.error('Error saving submission:', error);
-    res.status(500).json({ error: 'Failed to save submission' });
+    res.json({ error: 'Failed to save submission' });
   }
 });
 
@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
     
   } catch (error) {
     console.error('Error fetching submissions:', error);
-    res.status(500).json({ error: 'Failed to fetch submissions' });
+    res.json({ error: 'Failed to fetch submissions' });
   }
 });
 
@@ -58,7 +58,7 @@ router.get('/csv', async (req, res) => {
     
   } catch (error) {
     console.error('Error fetching submissions:', error);
-    res.status(500).json({ error: 'Failed to fetch submissions' });
+    res.json({ error: 'Failed to fetch submissions' });
   }
 });
 
