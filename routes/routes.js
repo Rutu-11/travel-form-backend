@@ -8,10 +8,10 @@ router.post('/submissions', async (req, res) => {
     const submissionData = req.body;
     const submission = new Submission(submissionData);
     const savedSubmission = await submission.save();
-    res.json(savedSubmission);
+    res.status(201).json(savedSubmission);
   } catch (error) {
     console.error('Error saving submission:', error);
-    res.json({ error: 'Failed to save submission' });
+    res.status(500).json({ error: 'Failed to save submission' });
   }
 });
 
@@ -34,31 +34,23 @@ router.get('/', async (req, res) => {
     
   } catch (error) {
     console.error('Error fetching submissions:', error);
-    res.json({ error: 'Failed to fetch submissions' });
+    res.status(500).json({ error: 'Failed to fetch submissions' });
   }
 });
 
 
 
-router.get('/csv', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    // const page = parseInt(req.query.page) || 1;
-    // const limit = 5;
-    // const skip = (page - 1) * limit;
-
-    // const count = await Submission.countDocuments();
-    // const totalPages = Math.ceil(count / limit);
 
     const submissions = await Submission.find()
     .sort({ createdAt: -1 }) // Sort by creation date in descending order
-    // .skip(skip)
-    // .limit(limit);
     res.json({ submissions });
 
     
   } catch (error) {
     console.error('Error fetching submissions:', error);
-    res.json({ error: 'Failed to fetch submissions' });
+    res.status(500).json({ error: 'Failed to fetch submissions' });
   }
 });
 
