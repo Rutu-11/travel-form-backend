@@ -9,7 +9,9 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.use("/api", router);
-
+app.use('/',(req,res)=>{
+  res.json({"msg":"hello word"})
+})
 const connect = () => {
   mongoose
     .connect(process.env.MONGO_URL)
