@@ -24,7 +24,12 @@ const connect = () => {
 };
 
 const port = process.env.PORT || 5000;
-app.listen(5000, () => {
-  connect();
-  console.log(`Server is running on port ${port}`);
-});
+connect()
+.then(() => {
+    app.listen(port, (e) => {
+        if(e){
+            console.log("Server Error",e);
+        }
+        console.log(`Server listening on http://localhost:${port}`)
+    })
+})
