@@ -40,7 +40,7 @@ router.get('/', async (req, res) => {
 
 
 
-router.get('/', async (req, res) => {
+router.get('/csv', async (req, res) => {
   try {
 
     const submissions = await Submission.find()
